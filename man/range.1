@@ -1,0 +1,60 @@
+.\" Copyright (c) 2004-2023 by Ricardo Yanez <ricardo.yanez@calel.org>
+.\"
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\"
+.\" Since the Linux kernel and libraries are constantly changing, this
+.\" manual page may be incorrect or out-of-date.  The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\"
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
+.\"
+.TH RANGE 1 2023-02-05
+.\" NAME should be all caps, SECTION should be 1-8, maybe w/ subsection
+.\" other parms are allowed: see man(7), man(1)
+.SH NAME
+range \- program to calculate -dE/dx and range
+.SH SYNOPSIS
+.B range
+[\fIOPTION\fR]
+.SH DESCRIPTION
+The
+.BR range
+program calculates -dE/dx and range of ions in absorber foils.
+.SH OPTIONS
+.TP
+.B \-n, --ns
+use the Northcliffe-Schilling correlations valid for E/A < 12 MeV/A (default)
+.TP
+.B \-h, --hbg
+use the Hubert-Bimbot-Gauvin correlations valid for 2.5 < E/A < 100 MeV/A
+.TP
+.B \-l, --list
+show a list of pre-defined absorber compounds and exit
+.TP
+.B \-v, --version
+show the rangelib version number and exit
+.TP
+.B \-\-help
+display this help and exit
+.SH "SEE ALSO"
+.BR rangelib (3), passage (3), egassap (3), rangen (3), thickn (3)
+.SH AUTHOR
+This manual page was written by Ricardo Yanez.
+.SH "REPORTING BUGS"
+Report bugs to <ricardo.yanez@calel.org>.
+.SH COPYRIGHT
+Copyright \(co 2004-2023 Ricardo Yanez.
+.PP
+This is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2, or (at your option) any later version.

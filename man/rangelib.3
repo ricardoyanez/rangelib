@@ -1,0 +1,145 @@
+.\" Copyright (c) 2004-2023 by Ricardo Yanez <ricardo.yanez@calel.org>
+.\"
+.\" Permission is granted to make and distribute verbatim copies of this
+.\" manual provided the copyright notice and this permission notice are
+.\" preserved on all copies.
+.\"
+.\" Permission is granted to copy and distribute modified versions of this
+.\" manual under the conditions for verbatim copying, provided that the
+.\" entire resulting derived work is distributed under the terms of a
+.\" permission notice identical to this one
+.\"
+.\" Since the Linux kernel and libraries are constantly changing, this
+.\" manual page may be incorrect or out-of-date.  The author(s) assume no
+.\" responsibility for errors or omissions, or for damages resulting from
+.\" the use of the information contained herein.  The author(s) may not
+.\" have taken the same level of care in the production of this manual,
+.\" which is licensed free of charge, as they might when working
+.\" professionally.
+.\"
+.\" Formatted or processed versions of this manual, if unaccompanied by
+.\" the source, must acknowledge the copyright and authors of this work.
+.\"
+.TH RANGELIB 3 2023-02-05 "" "Linux Programmer's Manual"
+.\" NAME should be all caps, SECTION should be 1-8, maybe w/ subsection
+.\" other parms are allowed: see man(7), man(1)
+.SH NAME
+passage, egassap, rangen, thickn \- functions for energy loss calculations
+.SH SYNOPSIS
+.nf
+.B #include <range.h>
+.sp
+.BI "double passage(int " icorr ", int " zp ", int " ap ", int " iabso ,
+.BI " int " zt ", int " at ", double " ein ", double " t ", double " *err );
+.sp
+.BI "double egassap(int " icorr ", int " zp ", int " ap ", int " iabso ,
+.BI " int " zt ", int " at ", double " t ", double " eout ", double " *err );
+.sp
+.BI "double rangen(int " icorr ", int " zp ", int " ap ", int " iabso ,
+.BI " int " zt ", int " at ", double " ein );
+.sp
+.BI "double thickn(int " icorr ", int " zp ", int " ap ", int " iabso ,
+.BI " int " zt ", int " at ", double " ein ", double " de );
+.sp
+Link with -lrange and -lm.
+.fi
+.SH "DESCRIPTION"
+The
+.BR passage()
+function returns the energy in units of MeV of an ion after passage through an absorber foil calculated either with Northcliffe-Schilling or the Hubert-Bimbot-Gauvin correlations. Likewise, the
+.B egassap()
+function returns the incoming energy in units of MeV of an ion before passage through an absorber foil.
+The function
+.BR rangen()
+returns the range in units of mg/cm2 of an ion of a given incoming energy.
+The function
+.BR thickn()
+returns the absorber thickness in units of mg/cm2 for a given energy decrement.
+.TP
+.I icorr
+If equal to 0 uses the Northcliffe-Schilling correlations valid for E/A < 12 MeV/A. If equal to 1 uses the Hubert-Bimbot-Gauvin correlations valid for 2.5 < E/A < 100 MeV/A. If called with an energy outside the valid limits, \fIicorr\fP is changed automatically.
+.TP
+.I zp ap
+Atomic and mass number of ion.
+.TP
+.I iabso
+The absorber is a single element if \fIiabso\fP = 0. If \fIiabso\fP > 0 the absorber is a compound. Run
+.B range --list
+to display a list of pre-defined absorber compounds. If \fIiabso\fP = -1 the absorber is a user defined compound (see example below).
+.TP
+.I zt at
+Atomic and mass number of single element absorber (only if \fIiabso\fP = 0). If
+\fIiabso\fP > 0 or \fIiabso\fP = -1 the atomic and mass numbers of absorber compound are defined elsewhere and \fIzt\fP and \fIat\fP have no effect whatsoever.
+.TP
+.I ein
+Incoming energy of ion in MeV.
+.TP
+.I eout
+Outgoing energy of ion in MeV.
+.TP
+.I de
+Energy decrement of ion in MeV.
+.TP
+.I t
+Absorber foil thickness in mg/cm2.
+.TP
+.I err
+Pointer to the error in MeV.
+.TP
+A user defined compound is stored in the array \fIabsorb\fP of structures \fIelem\fP, all of which is defined in \fI<range.h>\fP as follows:
+.sp
+.RS
+.nf
+.ne 11
+.ta 8n 16n 32n
+int nelem;
+struct elem {
+        int      z;                 /* atomic number */
+        int      a;                 /* mass number */
+        double   w;                 /* mass weight */
+} absorb[NELMAX];
+.ta
+.fi
+.RE
+.PP
+The variable \fInelem\fP defines the number of elements in absorber (maximum NELMAX=10). The array \fIabsorb\fP works only if \fIiabso\fP = -1.
+.SH "RETURN VALUE"
+The functions \fBpassage()\fP and \fBegassap()\fP return the values described in units of MeV. The function \fBthickn()\fP returns the value described in units of mg/cm^2.
+.SH "EXAMPLES"
+To define water as the absorber compound,
+.sp
+.RS
+.nf
+.ne 11
+.ta 8n 16n 32n
+nelem = 2;
+absorb[0].z = 1; absorb[0].a = 1;  absorb[0].w = 2;
+absorb[1].z = 8; absorb[1].a = 16; absorb[1].w = 16;
+.ta
+.fi
+.RE
+.PP
+The weight must be the total mass of the element in the compound, or abundances in case of natural ocurring elements. For example, to define natural Cu,
+.sp
+.RS
+.nf
+.ne 11
+.ta 8n 16n 32n
+nelem = 2;
+absorb[0].z = 29; absorb[0].a = 63; absorb[0].w = 63*69.2;
+absorb[1].z = 29; absorb[1].a = 65; absorb[1].w = 65*30.8;
+.ta
+.fi
+.RE
+.SH REFERENCE
+L.C. Northcliffe, R.F. Schilling, Nucl. Data Tables A7, 233 (1970).
+.RE
+F. Hubert, R. Rimbot and H. Gauvin, Atomic Data and Nuclear Data Tables 46, pp. 1-213 (1990).
+.SH AUTHOR
+This manual page was written by Ricardo Yanez.
+.SH "REPORTING BUGS"
+Report bugs to <ricardo.yanez@calel.org>.
+.SH COPYRIGHT
+Copyright \(co 2004-2023 Ricardo Yanez.
+.PP
+This is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2, or (at your option) any later version.
