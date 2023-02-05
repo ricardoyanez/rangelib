@@ -1,0 +1,168 @@
+range (0.2.0-1) unstable; urgency=medium
+
+  * A deep refactoring.
+  * Arrays and matrices declared in heap where possible.
+  * New improved command line argument decoder.
+  * New file rangelib.c holds the backbone of rangelib
+  * ranges.c holds the range API subroutines
+  * As before, range.c is the front-end.
+  * Improved input sanitation.
+  * Example rangeair.c calculates the range of protons in air from 1 to 20 MeV.
+  * Old manual range.3 renamed to rangelib.3.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Sun, 05 Feb 2023 01:10:24 -0800
+
+range (0.1.8-1) unstable; urgency=medium
+
+  * Replaced automake for cmake.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Sat, 04 Feb 2023 08:28:50 -0800
+
+range (0.1.7-1)  unstable; urgency=low
+
+  * Added exit program option in range.
+  * Updated manual page so that NELMAX is referred as equal to 10.
+  * Separated numerical functions into new source nr.c and nr.h.
+  * Fixed bug in splie2 and splin2, where dimesion should be 200 and not n.
+  * Added example rangeair.c.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Sun, 30 Jan 2022 21:29:25 -0300
+
+range (0.1.6-3) unstable; urgency=low
+
+  * Symbols defined for Z=110 to Z=118.
+  * Added changelog to docs.
+  * Removed debian/ directory and INSTALL.Debian.
+  * Added Thorium Tetrafluoride (ThF4) as pre-defined compound.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Wed, 26 Jan 2022 17:03:40 -0300
+
+range (0.1.6-2) unstable; urgency=low
+
+  * Manual range.1 edited. Date fixed.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Fri, 31 Jan 2020 23:42:47 -0800
+
+range (0.1.6-1) unstable; urgency=low
+
+  * Added natural Uranium Tetrafluoride (UF4) and Stainless Steel (316L) as 
+    pre-defined compounds.
+  * Fixed automake issues (AM_CFLAGS versus CFLAGS).
+  * Updated acknowledgements to late Prof. Jan-Olov Liljenzin (JOL).
+  * Renamed functions locate and polint by adding _nr at the end. In 
+    particular locate conflicted with a function included in ROOT 
+    math/mathcore/src/triangle.c.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Fri, 31 Jan 2020 23:34:54 -0800
+
+range (0.1.5-2) unstable; urgency=low
+
+  * Fixed natural Ni abundances. Ni-61,62,64 abundances were mistakenly 
+    set 10 times their value. John Frankland of GANIL submitted the bug 
+    report.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Fri, 05 Oct 2012 13:51:03 -0700
+
+range (0.1.5-1) unstable; urgency=low
+
+  * Added natural Ni as pre-defined compound.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Mon, 26 Dec 2011 14:43:10 -0800
+
+range (0.1.4-1) unstable; urgency=low
+
+  * Some fixes to code.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Wed, 15 Dec 2010 17:22:47 -0800
+
+range (0.1.3-1) unstable; urgency=low
+
+  * Added function rangen.
+  * Libraries C++ compatible. Removed librange++.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Mon, 29 Mar 2010 16:42:46 -0400
+
+range (0.1.2-1) unstable; urgency=low
+
+  * Added function thickn.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Sun, 08 Nov 2009 07:41:18 -0800
+
+range (0.1.1-1) unstable; urgency=low
+
+  * Improved use of multidimentional array pointers
+  * Shared library compiled with g++ (librange++)
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Sun, 15 Jun 2008 14:19:21 -0400
+
+range (0.1.0-11) unstable; urgency=low
+
+  * Compiled for Etch.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Mon, 23 Jul 2007 08:30:29 -0400
+
+range (0.1.0-10) unstable; urgency=low
+
+  * Included Copyright notice in codes.
+  * Changed email address
+  * Included LICENSE file in orig.tar.gz
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Sun,  3 Apr 2005 12:53:53 +1000
+
+range (0.1.0-9) unstable; urgency=low
+
+  * Fixed bug: Symbol U.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Sun, 27 Mar 2005 17:40:35 +1000
+
+range (0.1.0-8) unstable; urgency=low
+
+  * Revised man pages and README
+  * Renamed README to NOTES
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Fri, 25 Mar 2005 21:18:42 +1100
+
+range (0.1.0-7) unstable; urgency=low
+
+  * Fixed header.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Tue, 15 Feb 2005 17:58:01 +1100
+
+range (0.1.0-6) unstable; urgency=low
+
+  * fixed some typos in manuals.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Wed, 12 Jan 2005 15:49:11 +1100
+
+range (0.1.0-5) unstable; urgency=low
+
+  * Range table implemented (option 2)
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Fri,  7 Jan 2005 18:17:01 +1100
+
+range (0.1.0-4) unstable; urgency=low
+
+  * Linked range against shared library librange.so
+  * -dE/dx table implemented (option 1)
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Thu, 30 Dec 2004 14:13:25 +1100
+
+range (0.1.0-3) unstable; urgency=low
+
+  * User defined compounds now possible
+  * Added examples
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Sat, 11 Dec 2004 09:03:39 +1100
+
+range (0.1.0-2) unstable; urgency=low
+
+  * Added program range to original static library
+  * Added man pages for range and passage
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Mon,  6 Dec 2004 10:12:19 +1100
+
+range (0.1.0-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Ricardo Yanez <ricardo.yanez@calel.org>  Thu,  2 Dec 2004 16:32:02 +1100
