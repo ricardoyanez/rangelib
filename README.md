@@ -1,4 +1,4 @@
-# rangelib - the -dE/dx and range C/C++ library
+# rangelib - stopping power and range C/C++ library
 
 _rangelib_ is a stopping power and range library written in C. It creates and stores in memory range tables based on the Northcliffe-Schilling[1] and Hubert-Bimbot-Gauvin[2] correlations. These can be used to calculate the energy loss of an ion after passage through a foil, or the incoming energy prior to passage based on the outgoing energy, or the range of an ion in a material, or the thickness of a foil to produce a desired energy loss.
 
